@@ -297,13 +297,20 @@ module.exports = function (grunt) {
         push: true,
         message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
       },
-      pages: {
+      development: {
         options: {
-          remote: 'git@github.com:example_user/example_webapp.git',
-          branch: 'gh-pages'
+          remote: 'ssh://git@github.com/amanraj/deploynode.git',
+          branch: 'development'
         }
       },
-      heroku: {
+      staging: {
+        options: {
+          remote: 'ssh://git@github.com/amanraj/deploynode.git',
+          branch: 'staging',
+          tag: pkg.version
+        }
+      },
+      production: {
         options: {
           remote: 'git@heroku.com:example-heroku-webapp-1988.git',
           branch: 'master',
