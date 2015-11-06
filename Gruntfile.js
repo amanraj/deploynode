@@ -15,8 +15,7 @@ module.exports = function (grunt) {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
     cdnify: 'grunt-google-cdn',
-    protractor: 'grunt-protractor-runner',
-    //buildcontrol: 'grunt-build-control'
+    protractor: 'grunt-protractor-runner'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -300,14 +299,13 @@ module.exports = function (grunt) {
       development: {
         options: {
           remote: 'ssh://git@github.com/amanraj/deploynode.git',
-          branch: 'development'
+          branch: 'dev'
         }
       },
       staging: {
         options: {
           remote: 'ssh://git@github.com/amanraj/deploynode.git',
-          branch: 'staging',
-          tag: pkg.version
+          branch: 'staging'
         }
       },
       production: {
@@ -422,27 +420,6 @@ module.exports = function (grunt) {
       }
     },
 
-    buildcontrol: {
-      options: {
-        dir: 'dist',
-        commit: true,
-        push: true,
-        connectCommits: false,
-        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-      },
-      heroku: {
-        options: {
-          remote: 'heroku',
-          branch: 'master'
-        }
-      },
-      openshift: {
-        options: {
-          remote: 'openshift',
-          branch: 'master'
-        }
-      }
-    },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
@@ -614,7 +591,7 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-build-control');
-  
+
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {
     grunt.log.ok('Waiting for server reload...');
